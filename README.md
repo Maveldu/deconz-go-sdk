@@ -1,0 +1,1 @@
+# deconz-go-sdk
