@@ -3,8 +3,8 @@ package sdk_test
 import (
 	"testing"
 
-	"github.com/maxatome/go-testdeep/td"
 	"github.com/jarcoal/httpmock"
+	"github.com/maxatome/go-testdeep/td"
 
 	"github.com/Maveldu/deconz-go-sdk"
 )
@@ -13,11 +13,14 @@ func TestGet(t *testing.T) {
 	httpmock.Activate()
 	t.Cleanup(httpmock.DeactivateAndReset)
 
-	client := sdk.NewClient("https://test.bidule")
+	client := sdk.NewClient("https://test.bidule", "SOMERADOMAPIKEY")
 
-	httpmock.RegisterResponder("GET", "https://test.bidule/lel", httpmock.NewStringResponder(200, `{"lul": 12}`))
-	httpmock.RegisterResponder("GET", "https://test.bidule/lel?lal=13", httpmock.NewStringResponder(200, `{"lul": 14}`))
-	httpmock.RegisterResponder("GET", "https://test.bidule/lil", httpmock.NewStringResponder(500, "nope"))
+	httpmock.RegisterResponder("GET", "https://test.bidule/api/SOMERADOMAPIKEY/lel",
+		httpmock.NewStringResponder(200, `{"lul": 12}`))
+	httpmock.RegisterResponder("GET", "https://test.bidule/api/SOMERADOMAPIKEY/lel?lal=13",
+		httpmock.NewStringResponder(200, `{"lul": 14}`))
+	httpmock.RegisterResponder("GET", "https://test.bidule/api/SOMERADOMAPIKEY/lil",
+		httpmock.NewStringResponder(500, "nope"))
 
 	type lul struct {
 		Lul int64 `json:"lul"`
