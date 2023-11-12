@@ -3,8 +3,8 @@ package sdk_test
 import (
 	"testing"
 
-	"github.com/maxatome/go-testdeep/td"
 	"github.com/jarcoal/httpmock"
+	"github.com/maxatome/go-testdeep/td"
 
 	"github.com/Maveldu/deconz-go-sdk"
 )
