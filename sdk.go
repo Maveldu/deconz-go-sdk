@@ -24,8 +24,8 @@ type Client struct {
 	url string
 }
 
-func NewClient(url string) *Client {
-	return &Client{url: url}
+func NewClient(url, apiKey string) *Client {
+	return &Client{url: fmt.Sprintf("%s/api/%s", url, apiKey)}
 }
 
 func (c Client) Get(path string, params interface{}, result interface{}) error {
